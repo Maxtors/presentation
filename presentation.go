@@ -84,12 +84,14 @@ func (s *Slide) Present() {
 
 		if len(s.Bullets) != 0 {
 			fmt.Println()
-			for pos, bullet := range s.Bullets {
+			pos := 0
+			for _, bullet := range s.Bullets {
 				switch bullet.Type {
 				case BulletStandard:
-					fmt.Printf("\t\t\t(%d/%d) %s\n", pos+1, len(s.Bullets), bullet.Content)
+					fmt.Printf("\t\t\t[%d] %s\n", pos+1, bullet.Content)
+					pos = pos + 1
 				case BulletSubStandard:
-					fmt.Printf("\t\t\t\t(%d/%d)- %s\n", pos+1, len(s.Bullets), bullet.Content)
+					fmt.Printf("\t\t\t\t- %s\n", bullet.Content)
 				}
 				bufio.NewReader(os.Stdin).ReadBytes('\n')
 			}
